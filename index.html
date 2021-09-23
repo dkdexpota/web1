@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="lab1">
+    <meta name="Keywords" content="">
+	<title> Lab1 </title>
+	<link rel="stylesheet" href="main.css">
+	<script type="text/javascript">
+		function validate() {
+	        let y = document.getElementById("coord_y");
+	        if (y.value.length === 0) {} else
+	        if ((y ^ 0) == y) {
+	            event.preventDefault();
+	            alert("Type an float");
+	        } else if (parseInt(y.value) <= -5 || parseInt(y.value) >= 5) {
+	            event.preventDefault();
+	            alert("Between -5 to 5");
+	        }
+
+	        var checkboxes = document.getElementsByName("radius");
+	        var checkboxesChecked = [];
+	        for (var index = 0; index < checkboxes.length; index++) {
+				if (checkboxes[index].checked) {
+					checkboxesChecked.push(checkboxes[index].value);
+				}
+			}
+			if (checkboxesChecked.length!=1) {
+				event.preventDefault();
+	            alert("One radius");
+			}
+	    }
+	</script>
+</head>
+<body>
+	<div class="header_text">
+		<div class="info_block">
+			Щепелев Артур Вячеславович
+		</div>
+		<div class="info_block">
+			P3232
+		</div>
+		<div class="info_block">
+			Вариант: 32014
+		</div>
+	</div>
+	<div id="box_content">
+		<div id="content">
+			<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+				<line x1="0" y1="150" x2="300" y2="150" stroke="#003"></line>
+	            <line x1="150" y1="0" x2="150" y2="300" stroke="#003"></line>
+	            <polygon points="300,150 295,145 295,155" fill="#003" stroke="#000"></polygon>
+	            <polygon points="150,0 145,5 155,5" fill="#003" stroke="#000"></polygon>
+	            <line x1="270" y1="155" x2="270" y2="145" stroke="#000"></line>
+	            <line x1="210" y1="155" x2="210" y2="145" stroke="#000"></line>
+	            <line x1="90" y1="155" x2="90" y2="145" stroke="#000"></line>
+	            <line x1="30" y1="155" x2="30" y2="145" stroke="#000"></line>
+	            <line x1="145" y1="30" x2="155" y2="30" stroke="#000"></line>
+	            <line x1="145" y1="90" x2="155" y2="90" stroke="#000"></line>
+	            <line x1="145" y1="210" x2="155" y2="210" stroke="#000"></line>
+	            <line x1="145" y1="270" x2="155" y2="270" stroke="#000"></line>
+	            <polygon points="30,150 150,30 150,150" fill="#00f" stroke="#003" fill-opacity="0.5"></polygon>
+                <rect height="60" width="120" x="30" y="150" fill-opacity="0.5" fill="#00f" stroke="#003"></rect>
+                <path stroke="#003" d="M 150 150 V 210 C 180 210 210 180 210 150 H 150" fill-opacity="0.5" fill="#00f"></path>
+	            <text x="157" y="35" class="rad_text">R</text>
+	            <text x="23" y="140" class="rad_text">-R</text>
+	            <text x="75" y="140" class="rad_text">-R/2</text>
+	            <text x="200" y="140" class="rad_text">R/2</text>
+	            <text x="265" y="140" class="rad_text">R</text>
+				<text x="157" y="215" class="rad_text">-R/2</text>
+				<text x="157" y="95" class="rad_text">R/2</text>
+				<text x="157" y="275" class="rad_text">-R</text>
+        	</svg>
+            
+			<form method="GET" action="main.php">
+				<div class="input_form">
+					<label>X:
+				    <input name="coord_x" type="radio" value="-4" checked="checked">-4
+				    <input name="coord_x" type="radio" value="-3">-3
+					<input name="coord_x" type="radio" value="-2">-2
+				    <input name="coord_x" type="radio" value="-1">-1
+				    <input name="coord_x" type="radio" value="0">0
+					<input name="coord_x" type="radio" value="1">1
+				    <input name="coord_x" type="radio" value="2">2
+				    <input name="coord_x" type="radio" value="3">3
+				    <input name="coord_x" type="radio" value="4">4
+				    </label>
+				</div>
+				<div class="input_form">
+					<label>Y:
+					<input type="text" placeholder="(-5; 5)" id="coord_y" name="coord_y" required="" maxlength="5">
+					</label>
+				</div>
+				<div class="input_form">
+					<label>R:</label>
+					<label>
+					    <input type="checkbox" name="radius" value="1" checked="checked"/>1
+					</label>
+
+					<label>
+					    <input type="checkbox" name="radius" value="2"/>2
+					</label>
+
+					<label>
+					    <input type="checkbox" name="radius" value="3"/>3
+					</label>
+
+					<label>
+					    <input type="checkbox" name="radius" value="4"/>4
+					</label>
+
+					<label>
+					    <input type="checkbox" name="radius" value="5"/>5
+					</label>
+				</div>
+				<div class="input_form">
+					<button type="submit" onclick="validate()">Check</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
