@@ -1,16 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION["requestsCount"])) {
-    for ($i = 0; $i < $_SESSION["requestsCount"]; $i++) {
-        unset($_SESSION[$i."coord_x"]);
-        unset($_SESSION[$i."coord_y"]);
-        unset($_SESSION[$i."radius"]);
-        unset($_SESSION[$i."result"]);
-        unset($_SESSION[$i."time"]);
-    }
-    $_SESSION["requestsCount"] = 0;
-}
-
 if(!isset($_SESSION["requestsCount"])){
     $_SESSION["requestsCount"] = 0;
 }
@@ -20,6 +9,7 @@ if(!isset($_SESSION["requestsCount"])){
 	    <meta charset="utf-8">
 	    <title>Result</title>
 	    <link rel="stylesheet" href="main.css">
+	   	
 	</head>
 	<body>
 		<div class="header_text">
@@ -42,6 +32,7 @@ if(!isset($_SESSION["requestsCount"])){
 		                <th>R</th>
 		                <th>Result</th>
 		                <th>Time</th>
+		                <th>Runtime</th>
 		            </tr>
 		        <?php
 		        function checkPosition($coord_x, $coord_y, $radius) {
@@ -63,6 +54,7 @@ if(!isset($_SESSION["requestsCount"])){
 		                . "</td><td>" . $_SESSION[$i."radius"]
 		                . "</td><td>" . $_SESSION[$i."result"]
 		                . "</td><td>" . $_SESSION[$i."time"]
+		                . "</td><td>" . $_SESSION[$i."runtime"]
 		                . "</td></tr>";
 		        }
 
@@ -93,6 +85,7 @@ if(!isset($_SESSION["requestsCount"])){
 		            }
 		            return false;
 		        }
+		        $start = microtime(true);
 		        for ($i = 0; $i < $_SESSION["requestsCount"]; $i++) {
 		            extendTable($i);
 		        }
@@ -110,6 +103,7 @@ if(!isset($_SESSION["requestsCount"])){
 		            $_SESSION[$currentRequestId."radius"] = $radius;
 		            $_SESSION[$currentRequestId."result"] = checkPosition($coord_x, $coord_y, $radius) ? "true" : "false";
 		            $_SESSION[$currentRequestId."time"] = date("d/m/Y h:i:s a", time());
+		            $_SESSION[$currentRequestId."runtime"] = round(microtime(true) - $start, 6) . " s";
 
 		            extendTable($_SESSION["requestsCount"]);
 
@@ -117,8 +111,8 @@ if(!isset($_SESSION["requestsCount"])){
 		        }
 		        ?>
 		        </table>
-		        <button id="back" onclick="window.location.href = '/';" value="w3docs">
-		            Back
+	        	<button id="back" onclick="window.location.href = '/';" value="w3docs">
+	            	Back
 		        </button>
 		    </div>
 		</div>

@@ -9,8 +9,7 @@
 	<script type="text/javascript">
 		function validate() {
 	        let y = document.getElementById("coord_y");
-	        if (y.value.length === 0) {} else
-	        if ((y ^ 0) == y) {
+	        if ((y.value ^ 0) != y.value) {
 	            event.preventDefault();
 	            alert("Type an float");
 	        } else if (parseInt(y.value) <= -5 || parseInt(y.value) >= 5) {
